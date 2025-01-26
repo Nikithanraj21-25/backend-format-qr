@@ -9,8 +9,13 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-// Middleware
-app.use(cors()); // Allow cross-origin requests
+const corsOptions = {
+  origin: '*', // Allow requests from the React Native app
+  methods: ['GET', 'POST'], // Specify the allowed methods
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.text({ type: 'text/plain' })); // Parse plain text
 app.use(bodyParser.json()); // Parse JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
